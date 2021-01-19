@@ -1,0 +1,175 @@
+@import 'variables/variables'
+body
+    background: $gray
+h2,
+h3,
+h4,
+h5,
+p
+    margin: 0
+    line-height: 1.5em
+.text-redLight
+    color: $redLight !important
+.text-grayDark
+    color: $grayDark !important
+.boxSliderArticles
+    width: 90%
+    margin: auto
+    @media screen and (min-width: 992px)
+        width: auto
+
+.headerNavegationMain
+    background: white
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    z-index: 100
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0px 10px 0 rgba(0, 0, 0, 0.2)
+.boxSubTitle
+    h3
+        @extend %dinBold
+        text-align: center 
+        color: $grayDark
+        font-size: 25px
+        line-height: 1.5em
+        @media screen and (min-width: 992px)
+            font-size: 30px
+        @media screen and (min-width: 1200px)
+            font-size: 45px
+.boxTitle
+    h2
+        @extend %dinBold
+        text-align: center 
+        color: $redLight
+        font-size: 35px
+        line-height: 1em
+        @media screen and (min-width: 992px)
+            font-size: 45px
+        @media screen and (min-width: 1200px)
+            font-size: 60px
+.boxDescription
+    p
+        @extend %uniLTStd
+        text-align: center 
+        color: $grayDark
+        font-size: 14px
+        @media screen and (min-width: 1200px)
+            font-size: 18px
+.separate-link
+    width: 1px
+    height: auto
+    background: $grayLight2
+.btn-link
+    @extend %uniLTStdBold
+    font-size: 12px
+    color: $grayDark
+    text-decoration: none
+    position: relative
+    text-transform: uppercase
+    @media screen and (min-width: 1200px)
+        font-size: 14px
+.boxLink
+    a
+        display: inline-block
+        &.btn-nuxt-link
+            @extend %uniLTStdBold
+            font-size: 12px
+            color: $blue
+            text-decoration: none
+            position: relative
+            @media screen and (min-width: 1200px)
+                font-size: 14px
+            &:before,
+            &:after
+                position: absolute
+                content: ''
+                width: 0%
+                background: $blue
+                bottom: 0
+                height: 1px
+                transition: .5s ease width
+            &:before
+                left: 0
+            &:after
+                right: 0
+            &:hover
+                &:before,
+                &:after
+                    width: 50%
+
+
+.boxDescriptionFooter
+    p
+        @extend %uniLTStd
+        text-align: center 
+        color: $grayDark
+        font-size: 10px
+        @media screen and (min-width: 1200px)
+            font-size: 12px
+.boxTitleFooter
+    h2
+        @extend %dinBold
+        text-align: left 
+        color: black
+        font-size: 12px
+        @media screen and (min-width: 1200px)
+            font-size: 14px
+.VueCarousel-navigation
+    .VueCarousel-navigation-button
+        border-radius: 50%
+        background: $redLight
+        width: 40px
+        height: 40px
+        line-height: 40px
+        margin: 0 !important
+        padding-top: 1px !important
+        padding-bottom: 0 !important
+        color: white
+        &:focus,
+        &:active,
+        &:hover
+            outline: none
+        &.VueCarousel-navigation-next
+            padding-left: 4px !important
+            padding-right: 0 !important
+            transform: translateY(-50%) translateX(60%)
+            @media screen and (min-width: 992px)
+                transform: translateY(-50%) translateX(100%)
+        &.VueCarousel-navigation-prev
+            padding-left: 0px !important
+            padding-right: 4px !important
+            transform: translateY(-50%) translateX(-60%)
+            @media screen and (min-width: 992px)
+                transform: translateY(-50%) translateX(-100%)
+.card
+    border-radius: 0
+    border: 0
+    .card-img
+        border-radius: 0
+    .card-body
+        .card-title
+            @extend %uniLTStdBold
+            font-size: 20px
+            color: $grayDark
+            @media screen and (min-width: 1200px)
+                font-size: 35px
+.boxButtom
+    a
+        @extend %dinBold
+        font-size: 14px
+        text-decoration: none
+        display: inline-block
+        @media screen and (min-width: 1200px)
+            font-size: 18px
+        &.btn-nuxt
+            color: white
+            text-transform: uppercase
+            line-height: 2.5em
+            padding: 0 4.5em
+            border: 2px solid $redLight
+            transition: .5s ease all
+            background: $redLight
+            &:hover
+                color: $redLight
+                background: white
