@@ -1,0 +1,39 @@
+<template>
+    <div class="boxFlecha">
+        <svg version="1.1" id="svgFlecha" class="svgFlecha" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 37.5 31.3" style="enable-background:new 0 0 37.5 31.3;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:#E73766;}
+                .st1{fill:none;stroke:#F2F2F2;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                .st2{fill:none;stroke:#E73766;stroke-width:2;stroke-miterlimit:10;}
+            </style>
+            <g>
+                <g>
+                    <text transform="matrix(1 0 0 1 137.8892 1487.4304)" style="fill:#5C5C5C; font-family:'UniversLTStd-Light'; font-size:26px;">1</text>
+                </g>
+                <text transform="matrix(1 0 0 1 232.8829 1487.4304)" class="st0" style="font-family:'UniversLTStd-Light'; font-size:26px;">2</text>
+                <g>
+                    <text transform="matrix(1 0 0 1 327.8765 1487.4304)" style="fill:#5C5C5C; font-family:'UniversLTStd-Light'; font-size:26px;">3</text>
+                </g>
+                <g>
+                    <text transform="matrix(1 0 0 1 422.8702 1487.4304)" style="fill:#5C5C5C; font-family:'UniversLTStd-Light'; font-size:26px;">4</text>
+                </g>
+                <g>
+                    <text transform="matrix(1 0 0 1 514.7696 1487.4304)" style="fill:#5C5C5C; font-family:'UniversLTStd-Light'; font-size:26px;">...</text>
+                </g>
+                <g>
+                    <text transform="matrix(1 0 0 1 605.8892 1487.4304)" style="fill:#5C5C5C; font-family:'UniversLTStd-Light'; font-size:26px;">10</text>
+                </g>
+            </g>
+            <g>
+                <circle class="st0" cx="723.6" cy="1478.6" r="15"/>
+                <polyline class="st1" points="720.5,1485.1 729.1,1478.6 720.5,1472.1 	"/>
+            </g>
+            <line class="st2" x1="232.9" y1="1493.6" x2="247.1" y2="1493.6"/>
+            <g>
+                <circle class="st0" cx="21.6" cy="15.6" r="15"/>
+                <polyline class="st1" points="24.7,22.1 16.1,15.6 24.7,9.1 	"/>
+            </g>
+        </svg>
+    </div>
+</template>

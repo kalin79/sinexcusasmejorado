@@ -6,11 +6,25 @@
                     <icon-search />
                 </nuxt-link>
                 <div class="separate"></div>
-                <nuxt-link to="/" class="box-user-link">
+                <nuxt-link to="/login" class="box-user-link" v-if="!auth.isLogged">
                     <div class="d-flex justify-content-start  align-items-center">
                         <icon-user />
                     </div>
                 </nuxt-link>
+                <div v-else class="boxLoginUser">
+                    <a to="javascript:void(0)" class="box-user-link" >
+                        <div class="d-flex justify-content-start  align-items-center">
+                            <icon-user />
+                            <!-- <span class="userText">Bienvenido</span> -->
+                            <span class="userText">{{ auth.user.user.id }}</span>
+                        </div>
+                    </a>
+                    <div class="boxOptionUser">
+                        <a href="javascript:void(0)" @click="loginOut">
+                            <span class="userText">Cerrar sesión</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container">
@@ -19,7 +33,7 @@
                     <div class="col-md-5">
                         <ul class="boxOptionsMenu ulMenu">
                             <li>
-                                <nuxt-link to="/" class="link-menu curso">
+                                <nuxt-link to="/cursos" class="link-menu curso">
                                     <div class="d-flex justify-content-start  align-items-center">
                                         <icon-lapiz />
                                         <p>cursos</p>
@@ -27,12 +41,12 @@
                                 </nuxt-link>
                             </li>
                             <li>
-                                <nuxt-link to="/" class="link-menu">
+                                <nuxt-link to="/identificar" class="link-menu">
                                     <p>para identificar</p>
                                 </nuxt-link>
                             </li>
                             <li>
-                                <nuxt-link to="/" class="link-menu">
+                                <nuxt-link to="/compartir" class="link-menu">
                                     <p>para compartir</p>
                                 </nuxt-link>
                             </li>
@@ -46,12 +60,12 @@
                     <div class="col-md-5">
                         <ul class="boxOptionsMenu ulMenu">
                             <li>
-                                <nuxt-link to="/" class="link-menu">
+                                <nuxt-link to="/construir" class="link-menu">
                                     <p>para construir</p>
                                 </nuxt-link>
                             </li>
                             <li>
-                                <nuxt-link to="/" class="link-menu">
+                                <nuxt-link to="/avanzar" class="link-menu">
                                     <p>para avanzar</p>
                                 </nuxt-link>
                             </li>
@@ -67,7 +81,7 @@ import IconLapiz from '@/components/Svg/IconLapiz'
 import IconUser from '@/components/Svg/IconUser'
 import IconSearch from '@/components/Svg/IconBuscador'
 
-import { mapMutations, mapState, mapGetters } from 'vuex'
+import { mapGetters, mapState, mapActions } from 'vuex'
 
 
 export default {
@@ -78,20 +92,24 @@ export default {
     },
     data() {
             return {
-                auth: []
+                
             }
         },
     computed: {
         ...mapState(
-            { 
-                AuthUser: state => state.authentication.auth.userAuth,
-            },
+            {
+                auth: state => state.authentication.auth.userAuth,
+            }
         ),
     },
     mounted() {
-        this.auth = this.AuthUser
-        console.log(this.auth)
+       
     },
+    methods: {
+        ...mapActions(
+            {loginOut: 'authentication/auth/cerrarSesion'},
+        ),
+    }
 }
 </script>
 <style lang="sass">
@@ -99,8 +117,32 @@ export default {
         display: none
         @media screen and (min-width: 992px)
             display: block
+    .boxLoginUser
+        position: relative
+        .boxOptionUser
+            position: absolute
+            top: 23px
+            left: -70px
+            background: white
+            border: 1px solid $grayDark
+            border-radius: 5px 
+            width: 100px
+            line-height: 2rem
+            box-sizing: border-box
+            text-align: center
+            a
+                text-decoration: none
+                .userText
+                    text-align: center
+                    transition: 0.5s ease color
+                &:hover
+                    .userText
+                        color: $redLight
+
     .headerNavegationMain
         .box-user-link
+            .userText
+                transition: .5s ease color
             .boxSearch,
             .boxUser
                 position: relative
@@ -113,6 +155,8 @@ export default {
                         transition: .5s ease fill
             
             &:hover
+                .userText
+                    color: $redLight
                 .boxUser,
                 .boxSearch
                     svg
@@ -154,6 +198,11 @@ export default {
                 .link-menu
                     // border: 1px solid $green
                     text-decoration: none
+                    &.nuxt-link-active
+                        p
+                            &:before,
+                            &:after
+                                width: 51%
                     &.curso
                         p
                             color: $redLight

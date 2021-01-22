@@ -12,6 +12,11 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
+    script: [
+      {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'
+      }
+    ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: "https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css?display=swap"},
@@ -41,7 +46,8 @@ export default {
   plugins: [
     { src: '@/plugins/vue-carousel', ssr: false },
     { src: '@/plugins/vue-video.js', ssr: false },
-
+    { src: '~/plugins/vuex-persistedstate.js', ssr: false },
+    { src: '@/plugins/vue-validate.js'},
   ],
   /*
   ** Nuxt.js dev-modules

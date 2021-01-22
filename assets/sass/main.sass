@@ -1,4 +1,6 @@
+@import 'funciones'
 @import 'variables/variables'
+@import 'form'
 body
     background: $gray
 h2,
@@ -8,10 +10,47 @@ h5,
 p
     margin: 0
     line-height: 1.5em
+.btn-link
+    text-decoration: none
+    p
+        @extend %uniLTStd
+        color: #000
+        font-size: 11px
+        text-transform: none
+        letter-spacing: -.05em
+        @media screen and (min-width: 992px)
+            font-size: 14px
+        @media screen and (min-width: 1200px)
+            font-size: 16px
+    span
+        color: $redLight
+        position: relative
+        &:before
+            content: ''
+            position: absolute
+            bottom: 0
+            left: 0
+            width: 0
+            height: 1px
+            background: $redLight 
+            transition: .5s ease width
+    &:hover
+        text-decoration: none
+        span
+            &:before
+                width: 100%
+.userText
+    @extend %uniLTStd
+    font-size: 12px
+    color: $grayDark
+    margin-left: .25rem
+    
 .text-redLight
     color: $redLight !important
 .text-grayDark
     color: $grayDark !important
+.text-blue
+    color: $blueLight !important
 .boxSliderArticles
     width: 90%
     margin: auto
@@ -26,6 +65,9 @@ p
     width: 100%
     z-index: 100
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 0px 10px 0 rgba(0, 0, 0, 0.2)
+.box-user-link
+    text-decoration: none
+    cursor: pointer
 .boxSubTitle
     h3
         @extend %dinBold
@@ -38,7 +80,8 @@ p
         @media screen and (min-width: 1200px)
             font-size: 45px
 .boxTitle
-    h2
+    h2,
+    h1
         @extend %dinBold
         text-align: center 
         color: $redLight
@@ -155,7 +198,8 @@ p
             @media screen and (min-width: 1200px)
                 font-size: 35px
 .boxButtom
-    a
+    a,
+    button
         @extend %dinBold
         font-size: 14px
         text-decoration: none
@@ -173,3 +217,118 @@ p
             &:hover
                 color: $redLight
                 background: white
+.boxPagination
+    padding: 3rem 0 0 0
+    a
+        @extend %uniLTStd
+        text-align: center 
+        color: $grayDark
+        font-size: 16px
+        padding: 0 .5rem
+        margin: 0 .5rem
+        text-decoration: none
+        transition: .5s ease color
+        @media screen and (min-width: 992px)
+            font-size: 16px
+        &:hover,
+        &.active,
+        &:focus,
+        &:active
+            color: $redLight
+        &.boxFlecha
+            padding: 0
+            margin: 0
+            svg
+                &.svgFlecha
+                    width: 25px
+                    height: 25px
+                    
+            &.flecha-next
+                svg
+                    transform: rotate(-180deg)
+.boxCursos
+    padding: 4rem 0
+    .boxCuestionario
+        .boxTitle
+            h2
+                text-align: left
+                color: $grayDark
+    .boxGalleyVideo
+        .VueCarousel-pagination
+            .VueCarousel-dot-container
+                margin-top: 0 !important
+                button
+                    margin-top: .5rem !important
+                    margin-left: .25rem
+                    margin-right: .25rem
+                    &.VueCarousel-dot
+                        background-color: white !important
+                        border: 1px solid $grayDark
+                        padding: 0 !important
+                        width: 12px !important
+                        height: 12px !important
+                        &.VueCarousel-dot--active
+                            background-color: $redLight !important
+                            border: 1px solid $redLight
+                        &:focus
+                            outline: none !important
+        .VueCarousel-wrapper
+            height: 300px
+            background: black
+            .VueCarousel-inner
+                height: 100% !important
+                .boxVideoSlider
+                    height: 100%
+                    iframe
+                        height: 100%
+    .boxInfo
+        padding: 3rem 0 2rem
+    .boxTitle
+        h1
+            text-align: left
+            color: $grayDark
+.boxNews
+    padding: 4rem 0
+    .boxSlider
+        .boxDescription
+            width: 90%
+            @media screen and (min-width: 992px)
+                width: 60%
+            p
+                @extend %uniLTStd
+                text-align: center 
+                color: $grayDark
+                font-size: 14px
+                @media screen and (min-width: 992px)
+                    font-size: 18px
+                @media screen and (min-width: 1200px)
+                    font-size: 20px
+    .boxBanner
+        background: transparent
+        padding: 3rem 0 2rem
+    .boxListNews
+        article
+            margin-bottom: 2.15rem
+            &:last-child
+                margin-bottom: 0
+        .newsContent
+            width: 100%
+            @media screen and (min-width: 992px)
+                width: 50%
+            &:first-child
+                height: 250px
+                @media screen and (min-width: 992px)
+                    height: 300px
+                @media screen and (min-width: 1200px)
+                    height: 340px
+                img
+                    height: 100%
+            .card
+                height: 100%
+            .card-body
+                text-align: center
+                padding-top: 1rem
+                padding-bottom: 1rem
+                flex: none
+            .boxButtom
+                padding-top: 1.75rem 

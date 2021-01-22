@@ -5,7 +5,7 @@
     <section-two />
     <section-three />
     <section-four />
-    <footer-main />
+    
   </div>
 </template>
 <script>
@@ -14,7 +14,7 @@ import SectionOne from '@/components/Home/SectionOne'
 import SectionTwo from '@/components/Home/SectionTwo'
 import SectionThree from '@/components/Home/SectionThree'
 import SectionFour from '@/components/Home/SectionFour'
-import FooterMain from '@/components/Footer/Footer'
+
 
 /*
     Traemos la libreria de manera local en donde lo vamos a trabajar
@@ -33,7 +33,7 @@ export default {
     SectionTwo,
     SectionThree,
     SectionFour,
-    FooterMain,
+    
   },
   data() {
     return {
@@ -46,6 +46,8 @@ export default {
     // Animacion de la seccion 1
 
     const pingSectionHomeOne = '.homeSectionOne .boxHeader'
+
+    // console.log($(pingSectionHomeOne));
     /*Seteamos elementos*/
     gsap.set(pingSectionHomeOne, { y: -80})
     /*Realizamos la animacion*/

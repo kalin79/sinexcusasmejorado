@@ -1,0 +1,271 @@
+select
+    @extend %uniLTStd
+    font-size: 12px
+    @media screen and (min-width: 992px)
+        font-size: 14px
+    @media screen and (min-width: 1200px)
+        font-size: 16px
+.boxSexo
+    background: white
+    padding: .5rem 0.75rem
+    border: 1px solid #ced4da
+    box-sizing: border-box
+    .form-label
+        p
+            @extend %uniLTStd
+            font-size: 12px
+            @media screen and (min-width: 992px)
+                font-size: 14px
+            @media screen and (min-width: 1200px)
+                font-size: 16px
+
+.styled-checkbox 
+    position: absolute
+    opacity: 0
+
+    & + label 
+        position: relative
+        cursor: pointer
+        padding: 0
+  
+    // Box.
+    & + label:before 
+        content: ''
+        margin-right: 10px
+        display: inline-block
+        vertical-align: text-top
+        width: 20px
+        height: 20px
+        background: transparent
+        border-radius: 4px
+        border: 1px solid $redLight
+        transition: .5s ease background
+
+    // Box hover
+    &:hover + label:before 
+        background: $redLight
+  
+    // Box focus
+    &:focus + label:before 
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12)
+
+    // Box checked
+    &:checked + label:before
+        background: $redLight
+
+    // Disabled state label.
+    &:disabled + label 
+        color: #b8b8b8
+        cursor: auto
+
+    // Disabled box.
+    &:disabled + label:before 
+        box-shadow: none
+        background: #ddd
+
+    // Checkmark. Could be replaced with an image
+    &:checked + label:after 
+        content: ''
+        position: absolute
+        left: 5px
+        top: 12px
+        background: white
+        width: 2px
+        height: 2px
+        box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white
+        transform: rotate(45deg)
+.error-input
+    line-height: 2.5em
+    @extend %uniLTStd
+    color: red
+    font-size: 10px
+    @media screen and (min-width: 992px)
+        font-size: 12px
+    @media screen and (min-width: 1200px)
+        font-size: 14px
+.boxCheckbox
+    p,
+    a,
+    span
+        @extend %uniLTStd
+        font-size: 10px
+        text-align: justify
+        @media screen and (min-width: 992px)
+            font-size: 10px
+        @media screen and (min-width: 1200px)
+            font-size: 12px
+    span
+        margin-right: .25rem
+    a
+        color: $redLight
+.boxForm
+    padding: 2rem 0
+    background: transparent
+    .card-header
+        border: 0
+        background: transparent
+        @extend %uniLTStdBold
+        font-size: 30px
+        text-align: center
+        color: $grayDark
+        @media screen and (min-width: 992px)
+            font-size: 40px
+        @media screen and (min-width: 1200px)
+            font-size: 60px
+    .form-control
+        border-radius: 0
+        background: white
+        @extend %uniLTStd
+        font-size: 12px
+        @media screen and (min-width: 992px)
+            font-size: 14px
+        @media screen and (min-width: 1200px)
+            font-size: 16px
+        &:focus
+            outline: 1px solid rgba($redLight, .6)
+            border-color: rgba($redLight, .6)
+            box-shadow: 0 0 0 0.2rem rgba($redLight, 0.25)
+    .boxButtom
+        button
+            &.btn-nuxt
+                width: 100%
+.BoxFormUser
+    box-sizing: border-box
+    padding: 4rem 0 2rem
+.form-check
+    label 
+        display: inline-block
+        cursor: pointer
+        color: $redLight
+        position: relative
+        padding: 5px 15px 5px 40px
+        font-size: 1em
+        border-radius: 5px
+        transition: all .3s ease
+        &:hover 
+            background: rgba($redLight, .1)
+        &:before 
+            content: ""
+            display: inline-block
+            width: 17px
+            height: 17px
+            position: absolute
+            left: 15px
+            top: 9px
+            border-radius: 50%
+            background: none
+            border: 3px solid $redLight
+input[type="radio"]
+    display: none
+    &:checked + label:before 
+        display: none
+    &:checked + label 
+        padding: 5px 15px 
+        background: $redLight
+        border-radius: 2px
+        color: #fff
+
+
+.tabs
+    border-radius: 0px
+    overflow: hidden
+    box-shadow: none
+    // input:checked 
+    //     + .tab-label
+    //         border-bottom: 1px solid $redLight
+    //         &::after
+    //             border: 1px solid $redLight
+    //             // background: $redLight
+    //         .boxFlecha2
+    //             .svgFlecha2
+    //                 transform: rotate(-180deg)
+    //                 .st0
+    //                     fill: white
+            
+    //     ~ .tab-content 
+    //         max-height: 100vh
+    //         padding: 1em
+    // box-shadow: 0 4px 4px -2px rgba(0,0,0,0.5)
+    .tab
+        width: 100%
+        color: $grayDark
+        overflow: hidden
+        &-label 
+            display: flex
+            justify-content: space-between
+            padding: 1em 0em 0em 0em
+            background: transparent
+            border-bottom: 1px solid $grayDark
+            font-weight: bold
+            cursor: pointer
+            margin: 0
+            transition: all .35s
+            @extend %uniLTStdBold
+            font-size: 14px
+            text-align: center
+            color: $grayDark
+            position: relative
+            @media screen and (min-width: 992px)
+                font-size: 18px
+            @media screen and (min-width: 1200px)
+                font-size: 24px
+            /* Icon */
+            &:hover,
+            &.active
+                // background: darken($redLight, 10%)
+                border-bottom: 1px solid $redLight
+                &::after
+                    border: 1px solid $redLight
+                    background: $redLight
+                .boxFlecha2
+                    .svgFlecha2
+                        transform: rotate(-180deg)
+                        .st0
+                            fill: white
+            .boxFlecha2
+                position: absolute
+                bottom: 0.20rem
+                right: 1rem
+                @media screen and (min-width: 992px)
+                    right: .65rem
+                @media screen and (min-width: 1200px)
+                    right: 1rem
+                .svgFlecha2
+                    transition: all .35s
+                    .st0
+                        fill: $grayDark
+                        stroke: $grayDark
+                    width: 17px
+                    height: 10px
+                    // transform: rotate(90deg)
+                z-index: 2
+                
+            &::after
+                content: ""
+                width: 2em
+                height: 2em
+                box-sizing: content-box
+                position: absolute
+                bottom: -1px
+                right: 0
+                padding: 0rem
+                border: 1px solid $grayDark
+                transition: all .35s
+        &-content
+            max-height: 0
+            padding: 0
+            background: transparent
+            transition: all .35s
+            &.active
+                max-height: 100vh
+                padding: 1.5em 1em 1em 0em
+        &-close 
+            display: flex
+            justify-content: flex-end
+            padding: 1em
+            font-size: 0.75em
+            background: $redLight
+            cursor: pointer
+            &:hover 
+                background: darken($redLight, 10%)
+    
