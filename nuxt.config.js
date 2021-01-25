@@ -46,8 +46,9 @@ export default {
   plugins: [
     { src: '@/plugins/vue-carousel', ssr: false },
     { src: '@/plugins/vue-video.js', ssr: false },
-    { src: '~/plugins/vuex-persistedstate.js', ssr: false },
+    { src: '@/plugins/persistedState.client.js', ssr: false},
     { src: '@/plugins/vue-validate.js'},
+    { src: '~/plugins/vue-social-sharing.js'}
   ],
   /*
   ** Nuxt.js dev-modules

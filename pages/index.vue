@@ -1,11 +1,10 @@
 <template>
   <div>
     <banner-home />
-    <section-one />
-    <section-two />
-    <section-three />
-    <section-four />
-    
+    <section-one :dataOne="dataHome[0]" />
+    <section-two :dataTwo="dataHome[1]" />
+    <section-three :dataThree="dataHome[2]" />
+    <section-four :dataFour="dataHome[3]" />
   </div>
 </template>
 <script>
@@ -26,7 +25,10 @@ gsap.registerPlugin(ScrollToPlugin)
 gsap.registerPlugin(ScrollTrigger)
 gsap.core.globals("ScrollTrigger", ScrollTrigger)
 
+import { mapActions, mapState, mapGetters } from 'vuex'
+
 export default {
+  middleware: 'datahome',
   components: {
     BannerHome,
     SectionOne,
@@ -37,12 +39,15 @@ export default {
   },
   data() {
     return {
-
+    
     }
   },
-  computed: {},
+  computed: {
+    ...mapState('home',['dataHome']),
+  },
+  created () {},
   mounted () {
-
+    // console.log(this.dataHome)
     // Animacion de la seccion 1
 
     const pingSectionHomeOne = '.homeSectionOne .boxHeader'
@@ -68,7 +73,7 @@ export default {
     parallaxTl
       .to(pingSectionHomeOne, {duration: .5, y: 0})
 
-    // Animacion de la seccion 2
+    // Animacion de la seccion 2  
     
     const pingSectionHomeTwo = '.homeSectionTwo'
     const animationHomeTwo = '.homeSectionTwo .animationPing'
@@ -99,8 +104,8 @@ export default {
         ease: 'none',
         scrollTrigger: {
             trigger: boxSliderHomeThree,
-            start: 'top center-=20',
-            end: 'top center-=120',
+            start: 'top bottom-=110',
+            end: 'top bottom-=210',
             scrub: true, // permite que la animacion se vuelva a reproducir(true)
             markers: false,
             // onLeave: () => { console.log('onLeave'); },
@@ -114,6 +119,8 @@ export default {
       from(boxSliderHomeThree, {duration: .5, opacity: 0, xPercent: -10, ease: "power2.out"})
 
   },
+  methods: {
+  }
 }
 </script>
 

@@ -2,7 +2,7 @@
     <article class="homeSectionTwo">
         <div class="container">
             <div class="boxSubTitle animationPing">
-                <h3>Sin excusas para reconocer</h3>
+                <h3>Sin excusas {{ dataTwo.name }}</h3>
             </div>
             <div class="boxSliderArticles animationPing">
                 <client-only>
@@ -17,58 +17,20 @@
                         :loop="false"
                         :mouse-drag="true"
                         :touchDrag="true"
-                    >
-                        <slide>
+                    >   
+                        <slide v-for="(noticia, key, index) in dataTwo.articles" :key="index">
                             <div class="card">
-                                <img src="~/assets/images/card1.jpg" class="card-img" alt="Card title">
+                                <img :src="noticia.page_image" class="card-img" :alt="noticia.title">
                                 <div class="card-body">
-                                    <h5 class="card-title">El camarero y la cuenta</h5>
+                                    <h5 class="card-title">{{ noticia.title }}</h5>
                                     <div class="boxDescription">
                                         <p>
-                                            ¿Te ha pasado que el camarero dice "La cuenta señor", a pesar de que fue una mujer quien la pidió?
+                                            {{ noticia.resume }}
                                         </p>
                                     </div>
                                     
                                     <div class="boxButtom">
-                                        <nuxt-link to="#" class="btn-nuxt">
-                                            leer
-                                        </nuxt-link>
-                                    </div>
-                                </div>
-                            </div>
-                        </slide>
-                        <slide>
-                            <div class="card">
-                                <img src="~/assets/images/card2.jpg" class="card-img" alt="Card title">
-                                <div class="card-body">
-                                    <h5 class="card-title">El camarero y la cuenta</h5>
-                                    <div class="boxDescription">
-                                        <p>
-                                            ¿Te ha pasado que el camarero dice "La cuenta señor", a pesar de que fue una mujer quien la pidió?
-                                        </p>
-                                    </div>
-                                    
-                                    <div class="boxButtom">
-                                        <nuxt-link to="#" class="btn-nuxt">
-                                            leer
-                                        </nuxt-link>
-                                    </div>
-                                </div>
-                            </div>
-                        </slide>
-                        <slide>
-                            <div class="card">
-                                <img src="~/assets/images/card2.jpg" class="card-img" alt="Card title">
-                                <div class="card-body">
-                                    <h5 class="card-title">El camarero y la cuenta</h5>
-                                    <div class="boxDescription">
-                                        <p>
-                                            ¿Te ha pasado que el camarero dice "La cuenta señor", a pesar de que fue una mujer quien la pidió?
-                                        </p>
-                                    </div>
-                                    
-                                    <div class="boxButtom">
-                                        <nuxt-link to="#" class="btn-nuxt">
+                                        <nuxt-link :to="'/identificar/'+noticia.slug" class="btn-nuxt">
                                             leer
                                         </nuxt-link>
                                     </div>
@@ -83,7 +45,7 @@
 </template>
 <script>
 export default {
-    
+    props: ['dataTwo'],
 }
 </script>
 <style lang="sass">
@@ -95,6 +57,7 @@ export default {
         .card
             margin: .5rem
             padding-bottom: 1rem
+            height: 100%
             .card-body
                 text-align: center
                 padding-top: 2rem 

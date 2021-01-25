@@ -2,7 +2,7 @@
     <article class="homeSectionFour">
         <div class="container">
             <div class="boxSubTitle">
-                <h3>Sin excusas para avanzar</h3>
+                <h3>Sin excusas {{ dataFour.name }}</h3>
             </div>
             <div class="boxSliderArticles">
                 <client-only>
@@ -18,22 +18,22 @@
                         :mouse-drag="true"
                         :touchDrag="true"
                     >
-                        <slide>
+                        <slide v-for="(noticia, key, index) in dataFour.articles" :key="index">
                             <div class="card">
                                 <div class="d-flex justify-content-start flex-lg-row flex-column align-items-stretch">
                                     <div class="cardBoxImages">
-                                        <img src="~/assets/images/card4.jpg" class="card-img" alt="Card title">
+                                        <img :src="noticia.page_image" class="card-img" :alt="noticia.title">
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title">Educación con equidad de género </h5>
+                                        <h5 class="card-title">{{ noticia.title }}</h5>
                                         <div class="boxDescription">
                                             <p>
-                                                La energía del futuro
+                                                {{ noticia.resume }}
                                             </p>
                                         </div>
                                         
                                         <div class="boxButtom">
-                                            <nuxt-link to="#" class="btn-nuxt">
+                                            <nuxt-link :to="'/avanzar/'+noticia.slug" class="btn-nuxt">
                                                 Súmate
                                             </nuxt-link>
                                         </div>
@@ -51,7 +51,7 @@
 </template>
 <script>
 export default {
-    
+    props: ['dataFour'],
 }
 </script>
 <style lang="sass">
@@ -79,8 +79,11 @@ export default {
                     height: 100%
             .card-body
                 text-align: center
-                padding-top: 4rem
-                padding-bottom: 4rem
+                padding-top: 2rem
+                padding-bottom: 2rem
+                @media screen and (min-width: 992px)
+                    padding-top: 4rem
+                    padding-bottom: 0rem
                 .boxDescription
                     p
                         font-size: 14px

@@ -2,7 +2,7 @@
     <article class="homeSectionThree">
         <div class="container">
             <div class="boxSubTitle">
-                <h3>Sin excusas para compartir</h3>
+                <h3>Sin excusas {{ dataThree.name }}</h3>
             </div>
             <div class="boxSliderArticles">
                 <client-only>
@@ -18,22 +18,22 @@
                         :mouse-drag="true"
                         :touchDrag="true"
                     >
-                        <slide>
+                        <slide v-for="(noticia, key, index) in dataThree.articles" :key="index">
                             <div class="card">
                                 <div class="d-flex justify-content-start flex-lg-row flex-column align-items-stretch">
                                     <div class="cardBoxImages">
-                                        <img src="~/assets/images/card3.jpg" class="card-img" alt="Card title">
+                                        <img :src="noticia.page_image" class="card-img" :alt="noticia.title">
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title">Crearemos la primera generación de científicas peruanas</h5>
+                                        <h5 class="card-title">{{ noticia.title }}</h5>
                                         <div class="boxDescription">
                                             <p>
-                                                Wendy Patiño
+                                                {{ noticia.resume }}
                                             </p>
                                         </div>
                                         
                                         <div class="boxButtom">
-                                            <nuxt-link to="#" class="btn-nuxt">
+                                            <nuxt-link :to="'/compartir/'+noticia.slug" class="btn-nuxt">
                                                 leer
                                             </nuxt-link>
                                         </div>
@@ -42,30 +42,7 @@
                                 
                             </div>
                         </slide>
-                        <slide>
-                            <div class="card">
-                                <div class="d-flex justify-content-start flex-lg-row flex-column align-items-stretch">
-                                    <div class="cardBoxImages">
-                                        <img src="~/assets/images/card4.jpg" class="card-img" alt="Card title">
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Crearemos la primera generación de científicas peruanas</h5>
-                                        <div class="boxDescription">
-                                            <p>
-                                                Wendy Patiño
-                                            </p>
-                                        </div>
-                                        
-                                        <div class="boxButtom">
-                                            <nuxt-link to="#" class="btn-nuxt">
-                                                leer
-                                            </nuxt-link>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </slide>
+                        
                     </carousel>
                 </client-only>
             </div>
@@ -74,7 +51,7 @@
 </template>
 <script>
 export default {
-    
+    props: ['dataThree'],
 }
 </script>
 <style lang="sass">

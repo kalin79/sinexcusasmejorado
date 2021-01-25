@@ -38,7 +38,7 @@
     </div>
 </template>
 <script>
-import { mapState, mapActions, mapMutations} from 'vuex'
+import { mapActions} from 'vuex'
 export default {
     // middleware: 'guest',
     data () {

@@ -25,8 +25,8 @@
                                         <div class="error-input">{{ errors[0] }}</div>
                                     </ValidationProvider>
                                 </div>
-                                <div class="form-group">
-                                    <div class="d-flex justify-content-between align-items-center boxSexo">
+                                <div class="form-group boxSexo">
+                                    <div class="d-flex justify-content-start justify-content-lg-between align-items-start align-items-lg-center flex-column flex-lg-row ">
                                         <div class="form-label">
                                             <p>Género</p>
                                         </div>
@@ -141,7 +141,7 @@
                                             <label for="checkbox-term"><span>Al registrarte, aceptas las</span></label>
                                         </div>
                                         <p>
-                                            <nuxt-link to="/">Condiciones y Política de datos {{ errorCheckTerm }}</nuxt-link>
+                                            <nuxt-link to="/">Condiciones y Política de datos</nuxt-link>
                                         </p>
                                     </div>
                                     <div class="error-input" v-if="errorCheckTerm===1">

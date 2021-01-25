@@ -47,6 +47,8 @@ p
     
 .text-redLight
     color: $redLight !important
+.text-white
+    color: #fff !important
 .text-grayDark
     color: $grayDark !important
 .text-blue
@@ -81,7 +83,8 @@ p
             font-size: 45px
 .boxTitle
     h2,
-    h1
+    h1,
+    h3
         @extend %dinBold
         text-align: center 
         color: $redLight
@@ -91,12 +94,15 @@ p
             font-size: 45px
         @media screen and (min-width: 1200px)
             font-size: 60px
-.boxDescription
+.boxDescription,
+.articleCenter
     p
         @extend %uniLTStd
         text-align: center 
         color: $grayDark
         font-size: 14px
+        @media screen and (min-width: 992px)
+            font-size: 16px
         @media screen and (min-width: 1200px)
             font-size: 18px
 .separate-link
@@ -284,7 +290,8 @@ p
     .boxInfo
         padding: 3rem 0 2rem
     .boxTitle
-        h1
+        h1,
+        h3
             text-align: left
             color: $grayDark
 .boxNews
@@ -313,14 +320,17 @@ p
                 margin-bottom: 0
         .newsContent
             width: 100%
+            overflow: hidden
             @media screen and (min-width: 992px)
                 width: 50%
             &:first-child
                 height: 250px
                 @media screen and (min-width: 992px)
-                    height: 300px
+                    // height: 300px
+                    height: auto
                 @media screen and (min-width: 1200px)
-                    height: 340px
+                    // height: 340px
+                    height: auto
                 img
                     height: 100%
             .card
@@ -332,3 +342,76 @@ p
                 flex: none
             .boxButtom
                 padding-top: 1.75rem 
+.boxSliderNews
+    height: 130px
+    @media screen and (min-width: 992px)
+        height: 65vh
+    @media screen and (min-width: 1200px)
+        height: 60vh
+    .boxCarouselNews,
+    .VueCarousel,
+    .VueCarousel-inner
+        height: 100% !important
+        .fullBoxImage
+            width: 100%
+            height: 100%
+            img
+                object-fit: cover
+                height: 100%
+                width: 100%
+                object-position: 0px 0px
+.boxDetailNews
+    .boxButtom
+        margin: auto
+        text-align: center
+        padding: 0rem 0 4.5rem
+    .sectionBoxNews
+        .articleBoxNews
+            img
+                max-width: 100%
+                height: 180px
+                width: 100%
+                margin-bottom: 2rem
+                margin-top: 1rem
+                @media screen and (min-width: 992px)
+                    height: 350px
+                    margin-bottom: 4rem
+                    margin-top: 3rem
+            .articleCenter
+                p
+                    text-align: left
+                    margin-bottom: 1rem
+                h3,h4
+                    @extend %uniLTStd
+                    color: $redLight
+                    font-size: 18px
+                    line-height: 1em
+                    margin-bottom: 1.5rem
+                    margin-top: 2rem
+                    @media screen and (min-width: 992px)
+                        font-size: 30px
+                    @media screen and (min-width: 1200px)
+                        font-size: 35px
+                h4
+                    @extend %uniLTStdBold
+                    font-size: 25px
+                    color: $grayDark
+                    @media screen and (min-width: 992px)
+                        font-size: 40px
+                    @media screen and (min-width: 1200px)
+                        font-size: 50px
+                .boxTitle
+                    padding: 0rem 0 1rem
+                    @media screen and (min-width: 992px)
+                        padding: 2rem 0 2.5rem
+                    h1
+                        text-align: left
+                ._center
+                    width: 100%
+                    margin: auto
+                    @media screen and (min-width: 992px)
+                        width: 60%
+    .boxBannerHeader
+        padding: 2.85rem 0 2rem
+        @media screen and (min-width: 1200px)
+            padding: 3.35rem 0 2rem

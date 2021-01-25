@@ -1,164 +1,171 @@
 <template>
-    <div class="boxCursos">
-        <div class="boxInfo">
-            <div class="container">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="boxTitle">
-                          <h1>Título 1</h1>
-                        </div>
-                        <div class="separate"></div>
-                        <div class="boxDescription">
-                          <p>
-                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.
-                          </p>
-                          <p>
-                              magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                          </p>
-                          <p>
-                              Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.
-                          </p>
-                          <p>
-                              Et iusto odio volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
-                          </p>
-                        </div>
-                        <div class="boxGalleyVideo">
-                            <client-only>
-                                <carousel
-                                    :perPageCustom="[[300, 1]]" 
-                                    :autoplay="true" 
-                                    :autoplayTimeout=5000
-                                    :paginationPadding=10
-                                    :minSwipeDistance=20
-                                    :navigationEnabled="false"
-                                    :paginationEnabled="true"
-                                    :loop="true"
-                                    :mouse-drag="true"
-                                    :touchDrag="true"
-                                    
-                                >
-                                  <slide>
-                                    <div class="boxVideoSlider">
-                                      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qTI0SygtA14" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div>
-                                  </slide>
-                                  <slide>
-                                    <div class="boxVideoSlider">
-                                      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qTI0SygtA14" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div>
-                                  </slide>
-                                </carousel>
-                            </client-only>
-                        </div>
-                        <div class="boxCuestionario">
-                          <div class="boxTitle">
-                            <h2>Cuestionario</h2>
-                          </div>
-
-                          <div class="boxQuestion">
-                            <div class="tabs">
-                              <div class="tab">
-                                <!-- <input type="radio" id="rd1" name="rd"> -->
-                                <label class="tab-label active" @click="accordion(1, $event)">
-                                  Lorem ipsum dolor sit amet
-                                  <icon-flecha-two />
-                                </label>
-                                <div class="tab-content active" id="tabContent1">
-                                  <div class="boxDescription">
-                                    <p>
-                                      magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                                    </p>
-                                    <p>
-                                      Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.
-                                    </p>
-                                    <p>
-                                      Et iusto odio volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="tab">
-                                <!-- <input type="radio" id="rd2" name="rd"> -->
-                                <label class="tab-label" @click="accordion(2, $event)">
-                                  Item 2
-                                  <icon-flecha-two />
-                                </label>
-                                <div class="tab-content" id="tabContent2">
-                                  <div class="boxDescription">
-                                    <p>
-                                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, facilis.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- <div class="tab">
-                                <input type="radio" id="rd3" name="rd">
-                                <label for="rd3" class="tab-close">Close others &times;</label>
-                              </div> -->
+    <div class="sectionCourses" v-if="loadingCourse">
+        <header class="headerCurso">
+            <div class="boxHeader">
+                <div class="container">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div class="boxCircule">
+                            <div class="boxTitle">
+                                <h2 class="text-white">C</h2>
                             </div>
-                          </div>
-
-
-
+                            
+                        </div>
+                        <div class="boxTitle boxTitle-top">
+                            <h1 class="text-grayDark">Cursos</h1>
                         </div>
                     </div>
-                    <div class="col-4">2</div>
                 </div>
             </div>
-        </div>
+        </header>   
+        <section class="boxListCourses">
+            <div class="container">
+                <!-- {{ dataCourses }} -->
+                <div class="d-flex justify-content-between align-items-start flex-wrap flex-column flex-lg-row">
+                    <article class="boxViewCourse" v-for="(course, key, index) in dataCourses.courses" :key="index">
+                        <div class="boxCourseImage">
+                            <img :src="course.url_image" :alt="course.title">
+                        </div>
+                        <div class="boxCourseDetail">
+                            <div class="boxSubTitle">
+                                <h3>{{ course.title }}</h3>
+                            </div>
+                        </div>
+                        <div class="boxCourseBottom">
+                            <div class="boxButtom">
+                                <a :href="'cursos/'+course.slug" class="btn-nuxt">
+                                    empezar
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                </div>
+                <div class="boxPagination" v-if="1==2">
+                    <div class="container">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="javascript:void(0)" class="boxFlecha flecha-prev">
+                                <icon-flecha />
+                            </a>
+                            <a href="javascript:void(0)" class="active">
+                                <p>1</p>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <p>2</p>
+                            </a>
+                            <a href="javascript:void(0)">
+                                <p>3</p>
+                            </a>
+                            <a href="javascript:void(0)" class="boxFlecha flecha-next">
+                                <icon-flecha />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 <script>
-import IconFlechaTwo from '@/components/Svg/IconFlechaTwo'
-/*
-    Traemos la libreria de manera local en donde lo vamos a trabajar
-*/
-import {gsap} from "gsap/dist/gsap"
-import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
-gsap.registerPlugin(ScrollToPlugin)
-gsap.registerPlugin(ScrollTrigger)
-gsap.core.globals("ScrollTrigger", ScrollTrigger)
-export default {
-  components: {
-    IconFlechaTwo
-  },
-  data () {
-    return {
+import IconFlecha from '@/components/Svg/IconFlecha'
+import { mapActions, mapState, mapGetters } from 'vuex'
 
+export default {
+    // middleware: 'datacursos',
+    components: {
+        IconFlecha
+    },
+    computed: {
+        ...mapState('authentication/auth',['userAuth']),
+        ...mapState('courses',['dataCourses']),
+    },
+    async mounted() {
+        try {
+            if (!this.userAuth.isLogged) await this.isAuthenticated()
+            if (this.userAuth.isLogged){
+                console.log("logueado")
+                this.dataAllCourse()
+                this.loadingCourse = true
+            }else{
+                this.$store.commit('authentication/auth/setPath', this.$route.fullPath)
+                this.$router.push('/login')
+            }
+        } catch (e) {
+            // this.logout();
+            throw e;
+        }
+    },
+    data () {
+        return {
+            loadingCourse: false
+        }
+    },
+    methods: {
+        ...mapActions({
+            isAuthenticated: 'authentication/auth/isAuthenticated',
+            dataAllCourse: 'courses/dataAllCourse',
+        }),
+        // goToCourse(slug,id){
+        //     console.log(slug)
+        //     console.log(id)
+        // }
     }
-  },
-  mounted(){
-    // this.accordion()
-  },
-  methods: {
-    accordion(index, event) {
-      const tabAll = $('.tab-content')
-      const boxTab = $('#tabContent'+index)
-      if (!(boxTab.hasClass('active'))) {
-        tabAll.removeClass('active')
-        $('.tab-label').removeClass('active')
-        boxTab.addClass('active')
-        $(event.target).addClass('active')
-        // setTimeout(function(){ 
-        //   boxTab.addClass('active')
-        // }, 1000)
-      }
-      
-      
-    }
-  }
 }
 </script>
-<style lang="sass">
-    .boxCursos
-        .boxGalleyVideo
-          margin: 3rem 0
-        .separate
-          width: 10px
-          height: 2rem
-        .boxDescription
-          p
-            text-align: left
-            margin-bottom: 1rem
+<style lang='sass'>
+    .sectionCourses
+        .boxListCourses
+            padding-bottom: 3rem
+            .boxButtom
+                .btn-nuxt
+                    width: 100%
+                    padding-left: 0
+                    padding-right: 0
+                    text-align: center
+                    cursor: pointer
+            .boxCourseDetail
+                padding: 1rem 0
+                .boxSubTitle
+                    h3
+                        font-size: 25px
+                        line-height: 1.5em
+                        @media screen and (min-width: 992px)
+                            font-size: 30px
+                        @media screen and (min-width: 1200px)
+                            font-size: 36px
+            .boxViewCourse
+                width: 100%
+                margin-bottom: 2rem
+                @media screen and (min-width: 992px)
+                    width: 49%
+                &:last-child
+                    margin-bottom: 0
+                .boxCourseImage
+                    height: 300px
+                    img
+                        width: 100%
+                        object-fit: cover
+                        height: 100%
+        .headerCurso
+            .boxHeader
+                padding: 6rem 0 2rem
+                .boxCircule
+                    background: $redLight
+                    border-radius: 50%
+                    width: 50px
+                    height: 50px
+                    box-sizing: border-box
+                    margin-right: .5rem
+                    @media screen and(min-width: 1200px)
+                        width: 60px
+                        height: 60px
+                .boxTitle
+                    &-top
+                        position: relative
+                        top: 5px
+                    h2
+                        line-height: 1.15em
+                        @media screen and(min-width: 1200px)
+                            line-height: 1em
+                    h1
+                        text-align: left
 </style>

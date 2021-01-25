@@ -97,19 +97,19 @@ export default {
 <style lang="sass">
     .boxCompartir
         &.boxNews
-            .boxListNews
-                .newsContent
-                    width: 100%
-                    @media screen and (min-width: 992px)
-                        width: 50%
-                    &:first-child
-                        height: 300px
-                        @media screen and (min-width: 992px)
-                            height: 400px
-                        @media screen and (min-width: 1200px)
-                            height: 450px
-                        img
-                            height: 100%
+            // .boxListNews
+            //     .newsContent
+            //         width: 100%
+            //         @media screen and (min-width: 992px)
+            //             width: 50%
+            //         &:first-child
+            //             height: 300px
+            //             @media screen and (min-width: 992px)
+            //                 height: 400px
+            //             @media screen and (min-width: 1200px)
+            //                 height: 450px
+            //             img
+            //                 height: 100%
             .card
                 .card-body
                     .boxDescription

@@ -38,12 +38,12 @@
                         <li>
                             <div class="d-flex justify-content-between d-flex align-items-center">
                                 <div class="boxButtom">
-                                    <nuxt-link to="#" class="btn-nuxt">
+                                    <nuxt-link to="/registrate" class="btn-nuxt">
                                         CREar cuenta
                                     </nuxt-link>
                                 </div>
                                 <div class="boxButtom d-flex justify-content-end">
-                                    <nuxt-link to="#" class="btn-nuxt">
+                                    <nuxt-link to="/login" class="btn-nuxt">
                                         iniciar sesión
                                     </nuxt-link>
                                 </div>
@@ -60,35 +60,35 @@
                                         <nuxt-link to="/" class="box-logo">
                                             <p>Mi cuenta</p>
                                         </nuxt-link>
-                                        <nuxt-link to="/" class="box-logo">
+                                        <a href="javascript:void(0)" @click="loginOut">
                                             <p class="text-grayDark">Cerrar Sesión</p>
-                                        </nuxt-link>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <nuxt-link to="/" class="btn-link">
+                            <nuxt-link to="/cursos" class="btn-link">
                                 <p class="text-redLight">Cursos</p>
                             </nuxt-link>
                         </li>
                         <li>
-                            <nuxt-link to="/" class="btn-link">
+                            <nuxt-link to="/identificar" class="btn-link">
                                 <p>para identificar</p>
                             </nuxt-link>
                         </li>
                         <li>
-                            <nuxt-link to="/" class="btn-link">
+                            <nuxt-link to="/compartir" class="btn-link">
                                 <p>para compartir</p>
                             </nuxt-link>
                         </li>
                         <li>
-                            <nuxt-link to="/" class="btn-link">
+                            <nuxt-link to="/construir" class="btn-link">
                                 <p>para construir</p>
                             </nuxt-link>
                         </li>
                         <li>
-                            <nuxt-link to="/" class="btn-link">
+                            <nuxt-link to="/avanzar" class="btn-link">
                                 <p>para avanzar</p>
                             </nuxt-link>
                         </li>
@@ -109,18 +109,30 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollToPlugin)
 gsap.registerPlugin(ScrollTrigger)
 gsap.core.globals("ScrollTrigger", ScrollTrigger)
+
+import { mapGetters, mapState, mapActions } from 'vuex'
+
 export default {
     data() {
         return {
 
         }
     },
-    computed: {},
+    computed: {
+        ...mapState(
+            {
+                auth: state => state.authentication.auth.userAuth,
+            }
+        ),
+    },
     mounted () {
         const boxMenu = ".panelOptionMenu"
         gsap.set(boxMenu, {x:"-100%", autoAlpha: 0});
     },
     methods: {
+        ...mapActions(
+            {loginOut: 'authentication/auth/cerrarSesion'},
+        ),
         viewMenu() {
             const boxMenu = ".panelOptionMenu"
             gsap.to(boxMenu,{duration: .5, autoAlpha: 1, x: 0})
@@ -137,6 +149,25 @@ export default {
         display: block
         @media screen and (min-width: 992px)
             display: none
+        .btn-link
+            p
+                text-transform: uppercase
+                position: relative
+                display: inline-block
+                &::before
+                    content: ''
+                    position: absolute
+                    bottom: 0
+                    left: 0
+                    width: 0
+                    height: 1px
+                    background: $redLight
+            &.nuxt-link-active
+                p
+                    color: $redLight
+                    text-decoration: none
+                    &::before
+                        width: 100%
         .boxButtom
             width: 90%
             a.btn-nuxt

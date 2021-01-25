@@ -3,17 +3,14 @@
         <div class="container">
             <div class="boxHeader">
                 <div class="boxSubTitle">
-                    <h3>Sin excusas para construir</h3>
+                    <h3>Sin excusas {{ dataOne.name }}</h3>
                 </div>
                 <div class="boxTitle">
                     <h2>La responsabilidad es de todos</h2>
                 </div>
-                <div class="boxDescription">
-                    <p>Cuando de labores domésticas se trata recuerda que eso no depende solo de tu pareja, madre, hija u hermana. Esa labor es una tarea que nos corresponde a todos los habitantes de la casa. </p>
-                    <p>¿Cómo repartes esas labores en tu hogar? ¿Es equitativo?</p>
-                </div>
+                <div class="boxDescription" v-html="dataOne.description"></div>
                 <div class="boxButtom">
-                    <nuxt-link to="#" class="btn-nuxt">
+                    <nuxt-link to="/construir" class="btn-nuxt">
                         Leer
                     </nuxt-link>
                 </div>
@@ -24,7 +21,13 @@
 
 <script>
 export default {
-    
+    props: ['dataOne'],
+    data() {
+        return {
+            
+        }
+    },
+    mounted() {}
 }
 </script>
 

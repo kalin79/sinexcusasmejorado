@@ -1,0 +1,17 @@
+<template>
+    <div class="boxFlechaHorizontal">
+        <svg version="1.1" id="svgFlechaHorizontal" class="svgFlechaHorizontal" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 364.4 340.7" style="enable-background:new 0 0 364.4 340.7;" xml:space="preserve">
+            <style type="text/css">
+            .st0{fill:#2558EE;}
+            </style>
+            <g>
+            <g>
+            <path class="st0" d="M202,10.3c-6.5-6.2-16.8-5.9-23,0.6c-6.2,6.5-5.9,16.8,0.6,23l124.9,118.4h-278c-9,0-16.3,7.3-16.3,16.3
+            c0,9,7.3,16.3,16.3,16.3h277.5L179.6,303.3c-6.5,6.2-6.8,16.5-0.6,23c3.2,3.4,7.5,5,11.8,5c4,0,8.1-1.5,11.2-4.5l142-135.3
+            c6.2-6.1,9.5-14.3,9.5-23c0-8.7-3.4-16.9-9.8-23.3L202,10.3z M202,10.3"/>
+            </g>
+            </g>
+        </svg>
+    </div>
+</template>
