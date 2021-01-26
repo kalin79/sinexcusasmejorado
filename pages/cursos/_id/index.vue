@@ -1,5 +1,5 @@
 <template>
-    <div class="boxCursos">
+    <div class="boxCursos" v-if="loadingCourse">
         <div class="boxInfo">
             <div class="container">
                 <div class="row align-items-stretch">
@@ -10,19 +10,13 @@
                             </div>
                             <div class="boxBullet">
                                 <ul>
-                                    <li>
+                                    <li v-for="(unit, key, index) in dataCourse.units" :key="index">
                                         <div class="boxButtom">
-                                            <a href="javascript:void(0)" class="active d-flex justify-content-start align-items-center btn-nuxt">
-                                                <icon-bullet />
-                                                <p>Título 1</p>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="boxButtom">
-                                            <a href="javascript:void(0)" class="d-flex justify-content-start align-items-center btn-nuxt">
-                                                <icon-bullet />
-                                                <p>Título 2</p>
+                                            <a href="javascript:void(0)" class="btn-nuxt btn-nuxt100" :class="{ 'active' : unit.title === dataCourse.unitTitle }">
+                                                <div class="d-flex justify-content-start align-items-center">
+                                                    <icon-bullet />
+                                                    <p>{{ unit.title }}</p>
+                                                </div>
                                             </a>
                                         </div>
                                     </li>
@@ -32,24 +26,11 @@
                     </div>
                     <div class="col-12 col-lg-8">
                         <div class="boxTitle">
-                          <h1>Título 1</h1>
+                          <h1>{{ dataCourse.title }}</h1>
                         </div>
                         <div class="separate"></div>
-                        <div class="boxDescription">
-                          <p>
-                              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.
-                          </p>
-                          <p>
-                              magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                          </p>
-                          <p>
-                              Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.
-                          </p>
-                          <p>
-                              Et iusto odio volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
-                          </p>
-                        </div>
-                        <div class="boxGalleyVideo">
+                        <div class="boxDescription" v-html="dataCourse.unitDescription"></div>
+                        <div class="boxGalleyVideo" v-if="dataCourse.unitVideos">
                             <client-only>
                                 <carousel
                                     :perPageCustom="[[300, 1]]" 
@@ -64,14 +45,9 @@
                                     :touchDrag="true"
                                     
                                 >
-                                  <slide>
+                                  <slide v-for="(video, key, index) in dataCourse.unitVideos" :key="index">
                                     <div class="boxVideoSlider">
-                                      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qTI0SygtA14" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div>
-                                  </slide>
-                                  <slide>
-                                    <div class="boxVideoSlider">
-                                      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qTI0SygtA14" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                      <iframe width="100%" height="100%" :src="video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </div>
                                   </slide>
                                 </carousel>
@@ -173,26 +149,22 @@
                     <div class="d-none d-lg-block col-lg-4">
                       <div class="boxUnit">
                         <div class="boxSubTitle">
-                          <h3>Partes del curso</h3>
+                            <h3>Partes del curso</h3>
                         </div>
                         <div class="boxBullet">
                           <ul>
-                            <li>
-                              <a href="javascript:void(0)" class="active d-flex justify-content-start align-items-center btn-link">
-                                <icon-bullet />
-                                <p>Título 1</p>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="javascript:void(0)" class="d-flex justify-content-start align-items-center btn-link">
-                                <icon-bullet />
-                                <p>Título 2</p>
-                              </a>
+                            <li v-for="(unit, key, index) in dataCourse.units" :key="index">
+                                <a href="javascript:void(0)" class="btn-link" :class="{ 'active' : unit.title === dataCourse.unitTitle }">
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <icon-bullet />
+                                        <p>{{ unit.title }}</p>
+                                    </div>
+                                </a>
                             </li>
                           </ul>
                         </div>
                         <div class="boxUnitImage">
-                          <img src="~/assets/images/card4.jpg" class="card-img" alt="Card title">
+                            <img :src="dataCourse.imgPortda" class="card-img" :alt="dataCourse.title">
                         </div>
                       </div>
                       
@@ -215,37 +187,69 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollToPlugin)
 gsap.registerPlugin(ScrollTrigger)
 gsap.core.globals("ScrollTrigger", ScrollTrigger)
+
+import { mapActions, mapState, mapGetters } from 'vuex'
+
+
 export default {
-  components: {
-    IconFlechaTwo,
-    IconFlechaHorizontal,
-    IconBullet,
-  },
-  data () {
-    return {
-      checkEnd: '0'
+    // middleware: 'datacurso',
+    components: {
+        IconFlechaTwo,
+        IconFlechaHorizontal,
+        IconBullet,
+    },
+    data () {
+        return {
+            checkEnd: '0',
+            loadingCourse: false,
+            course: {
+                title: ''
+            }
+        }
+    },
+    computed: {
+        ...mapState('authentication/auth',['userAuth']),
+        ...mapGetters('courses/course', ['getCourse']),
+        ...mapState('courses/course', ['dataCourse']),
+        // objectVideos() {
+        //     let videosString = this.dataCourse.unitVideos.split('||')
+        //     let pos = 0, numElementos = videosString.length
+        //     let objVideos = videosString.splice(pos,numElementos)
+        //     return objVideos
+        // }
+    },
+    async mounted() {
+        try {
+            if (!this.userAuth.isLogged) await this.isAuthenticated()
+            if (this.userAuth.isLogged){
+                this.dataGetCourse(3)
+                this.loadingCourse = true
+
+            }else{
+                this.$store.commit('authentication/auth/setPath', this.$route.fullPath)
+                this.$router.push('/login')
+            }
+        } catch (e) {
+            throw e;
+        } finally {
+        }
+    },
+    methods: {
+        ...mapActions({
+            isAuthenticated: 'authentication/auth/isAuthenticated',
+            dataGetCourse: 'courses/course/dataGetCourse',
+        }),
+        accordion(index, event) {
+            const tabAll = $('.tab-content')
+            const boxTab = $('#tabContent'+index)
+            if (!(boxTab.hasClass('active'))) {
+                tabAll.removeClass('active')
+                $('.tab-label').removeClass('active')
+                boxTab.addClass('active')
+                $(event.target).addClass('active')
+            }
+        }
     }
-  },
-  mounted(){
-    // this.accordion()
-  },
-  methods: {
-    accordion(index, event) {
-      const tabAll = $('.tab-content')
-      const boxTab = $('#tabContent'+index)
-      if (!(boxTab.hasClass('active'))) {
-        tabAll.removeClass('active')
-        $('.tab-label').removeClass('active')
-        boxTab.addClass('active')
-        $(event.target).addClass('active')
-        // setTimeout(function(){ 
-        //   boxTab.addClass('active')
-        // }, 1000)
-      }
-      
-      
-    }
-  }
 }
 </script>
 <style lang="sass">
@@ -263,9 +267,9 @@ export default {
             border-left: 1px solid rgba($grayDark,.35)
             padding-left: 2rem
             height: 100%
-        .boxUnitImage
-            img
-                height: 200px
+        // .boxUnitImage
+        //     img
+        //         height: 200px
         .boxSubTitle
             padding-top: 3rem
             h3

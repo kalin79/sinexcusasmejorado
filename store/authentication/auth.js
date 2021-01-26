@@ -107,9 +107,9 @@ export const actions = {
              // Cookies.get('admin::token')
             const tokenHeader = `Bearer ${token}`
             this.$axios.setHeader('Authorization', tokenHeader)
-            console.log(token)
+            // console.log(token)
             let response = await this.$axios.$get('current')
-            console.log(response)
+            // console.log(response)
         } catch (e) {
             console.log(e)
             commit('setErrorMessage', e.message)
@@ -139,5 +139,7 @@ export const actions = {
 }
 
 export const getters = {
-    
+    getIsLogged(state) {
+        return state.userAuth.isLogged
+    }  
 }

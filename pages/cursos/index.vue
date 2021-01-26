@@ -19,9 +19,8 @@
         </header>   
         <section class="boxListCourses">
             <div class="container">
-                <!-- {{ dataCourses }} -->
                 <div class="d-flex justify-content-between align-items-start flex-wrap flex-column flex-lg-row">
-                    <article class="boxViewCourse" v-for="(course, key, index) in dataCourses.courses" :key="index">
+                    <article class="boxViewCourse" v-for="(course, key, index) in dataCourses.course" :key="index">
                         <div class="boxCourseImage">
                             <img :src="course.url_image" :alt="course.title">
                         </div>
@@ -82,8 +81,7 @@ export default {
         try {
             if (!this.userAuth.isLogged) await this.isAuthenticated()
             if (this.userAuth.isLogged){
-                console.log("logueado")
-                this.dataAllCourse()
+                this.dataAllCourses()
                 this.loadingCourse = true
             }else{
                 this.$store.commit('authentication/auth/setPath', this.$route.fullPath)
@@ -102,7 +100,7 @@ export default {
     methods: {
         ...mapActions({
             isAuthenticated: 'authentication/auth/isAuthenticated',
-            dataAllCourse: 'courses/dataAllCourse',
+            dataAllCourses: 'courses/dataAllCourses',
         }),
         // goToCourse(slug,id){
         //     console.log(slug)
